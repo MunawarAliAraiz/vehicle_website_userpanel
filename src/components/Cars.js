@@ -14,6 +14,8 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa"; // Impor
 import { Container } from "react-bootstrap";
 import VehicleSlidingCard from "../Cards/VehicleSlidingCard";
 
+const serverUrl = "http://localhost:4000";
+
 const Cars = () => {
 
   const [cars, setCars] = useState([]);
@@ -22,7 +24,7 @@ const Cars = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/cars/list');
+        const response = await axios.get(`${serverUrl}/api/cars/list`);
         setCars(response.data.cars);
       } catch (error) {
         console.error('Error fetching cars:', error);
@@ -94,12 +96,14 @@ const Cars = () => {
       <Slider {...settings}>
         {cars.map((car)=>(
           <VehicleSlidingCard
+          key={car._id}
+          id={car._id}
           image={car.img}
           name={car.name}
           price={`${car.price} $`}
         />
         ))}
-        <VehicleSlidingCard
+        {/* <VehicleSlidingCard
           image={audi}
           name="Lorem ipsum sr."
           price="PKR 234,000"
@@ -118,7 +122,7 @@ const Cars = () => {
           image={kia}
           name="Lorem ipsum sr."
           price="PKR 234,000"
-        />
+        /> */}
       </Slider>
     </Container>
   );

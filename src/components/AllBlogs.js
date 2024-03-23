@@ -34,7 +34,7 @@ const AllBlogs = () => {
 
   return (
     <Container>
-      <h2 className="heading">Recent Posts</h2>
+      <h2 className="heading" style={{marginTop:"110px"}}>Recent Posts</h2>
       {blogs.map((blog)=>{
         const createdAtDate = new Date(blog.createdAt);
         const formattedDateWithOrdinal = addOrdinalSuffix(createdAtDate.getDate()) + ' ' + 
@@ -42,12 +42,13 @@ const AllBlogs = () => {
           createdAtDate.getFullYear();
         return (
           <Blog
+          key={blog._id}
           head={blog.title}
           det={`${blog.writer}  ${formattedDateWithOrdinal}`}
           image={blog.img}
         />
         )})}
-      <Blog
+      {/* <Blog
         head="Zain Mehmood Won Cholistan Desert Rally 2024"
         det="Sulman Ali  Feb 27, 202"
         image={blog1}
@@ -66,7 +67,7 @@ const AllBlogs = () => {
         head="Sazgar Introduced Tank500 HEV In Pakistan – Price, Specs & Features"
         det="Sulman Ali  Feb 27, 202"
         image={blog4}
-      />
+      /> */}
     </Container>
   );
 };

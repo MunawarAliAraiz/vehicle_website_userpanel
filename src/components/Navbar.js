@@ -24,7 +24,7 @@ function Navbarr() {
       expand="lg"
       className="bg-body-tertiary"
       expanded={expanded}
-      style={{ position: "fixed", width: "100%", top: 0, zIndex: 1000 }}
+      style={{ position: "fixed", width: "100%",height:"100px", top: 0, zIndex: 1000 }}
     >
       <Container>
         <Navbar.Brand as={Link} to="/" onClick={() => setExpanded(false)}>
@@ -36,6 +36,7 @@ function Navbarr() {
               transform: "scale(2.6)",
               margin: "0 2rem",
               position: "relative",
+              marginTop:"-15px",
               top: "5px",
             }}
           />
@@ -57,6 +58,12 @@ function Navbarr() {
             {/* Update Link to use Link */}
             <Nav.Link as={Link} to="/bikes" onClick={handleNavLinkClick}>
               Bikes
+            </Nav.Link>{" "}
+            <Nav.Link as={Link} to="/signup" onClick={handleNavLinkClick}>
+              Sign Up
+            </Nav.Link>{" "}
+            <Nav.Link as={Link} to="/login" onClick={handleNavLinkClick}>
+              Login
             </Nav.Link>{" "}
             {/* New Route */}
            
