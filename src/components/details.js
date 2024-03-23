@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Col, Row, Form, Container, Button } from "react-bootstrap";
-import { Tab, Tabs } from "react-bootstrap";
-import { Card, CardBody, CardTitle } from "reactstrap";
-import { MDBCardBody, MDBCardImage, MDBSpinner } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
-import { Rating } from "react-simple-star-rating";
+import { Col, Row, Form, Button } from "react-bootstrap";
+// import { Tab, Tabs } from "react-bootstrap";
+// import { Card, CardBody, CardTitle } from "reactstrap";
+import { MDBSpinner } from "mdb-react-ui-kit";
+// import { Link } from "react-router-dom";
+// import { Rating } from "react-simple-star-rating";
 import Cookies from "js-cookie";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -13,195 +13,195 @@ import { serverUrl } from '../utils/serverUrl';
 import { stripe_public_key } from '../utils/stripe_pk';
 
 function ReviewData() {
-  const [showForm, setShowForm] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [data, setData] = useState([]);
-  const [similar, setSimilar] = useState([]);
+  // const [showForm, setShowForm] = useState(false);
+  // const [rating, setRating] = useState(0);
+  // const [data, setData] = useState([]);
+  // const [similar, setSimilar] = useState([]);
+  // const [submit, setSubmit] = useState(false);
+  // const [reviewSubmit, setReviewsubmit] = useState(false);
+  // const [reviews, setReviews] = useState([]);
+  // const [buySubmit, setBuysubmit] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [submit, setSubmit] = useState(false);
-  const [buySubmit, setBuysubmit] = useState(false);
-  const [reviewSubmit, setReviewsubmit] = useState(false);
-  const [reviews, setReviews] = useState([]);
   const { id } = useParams();
   const [car, setCar] = useState([]);
 
   useEffect(() => {
     document.body.style.overflowX = "hidden";
     window.scrollTo(0, 0);
-    getProducts();
-    getReviews();
+    // getProducts();
+    // getReviews();
+    const fetchCar = async () => {
+      try {
+        const response = await axios.get(`${serverUrl}/api/cars/${id}`);
+        setCar(response.data.car);
+      } catch (error) {
+        console.error('Error fetching cars:', error);
+      }
+    };
     fetchCar();
   }, [id])
 
-  const fetchCar = async () => {
-    try {
-      const response = await axios.get(`${serverUrl}/api/cars/${id}`);
-      setCar(response.data.car);
-    } catch (error) {
-      console.error('Error fetching cars:', error);
-    }
-  };
-  const handleCancel = () => {
-    setShowForm(false);
-  };
+  // const handleCancel = () => {
+  //   setShowForm(false);
+  // };
 
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
+  // const handleRating = (rate) => {
+  //   setRating(rate);
+  // };
 
-  async function getProducts() {
-    await fetch(`${process.env.REACT_APP_BASE_URL}/getInventory`, {
-      method: "GET",
-      headers: {
-        "api-key": process.env.REACT_APP_API_KEY,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Request failed.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data.data.filter((item) => item.Id == id && item.Active == 1));
-        const filterId = data.data.filter((item) => item.Id == id);
-        setSimilar(data.data.filter((item) => item.brandName == filterId[0].brandName && item.Id != filterId[0].Id && item.Active == 1));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // async function getProducts() {
+  //   await fetch(`${process.env.REACT_APP_BASE_URL}/getInventory`, {
+  //     method: "GET",
+  //     headers: {
+  //       "api-key": process.env.REACT_APP_API_KEY,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Request failed.");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setData(data.data.filter((item) => item.Id === id && item.Active === 1));
+  //       const filterId = data.data.filter((item) => item.Id === id);
+  //       setSimilar(data.data.filter((item) => item.brandName === filterId[0].brandName && item.Id !== filterId[0].Id && item.Active === 1));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  async function getReviews() {
-    await fetch(`${process.env.REACT_APP_BASE_URL}/getReviews?id=${id}`, {
-      method: "GET",
-      headers: {
-        "api-key": process.env.REACT_APP_API_KEY,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Request failed.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setReviews(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // async function getReviews() {
+  //   await fetch(`${process.env.REACT_APP_BASE_URL}/getReviews?id=${id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "api-key": process.env.REACT_APP_API_KEY,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Request failed.");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setReviews(data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  const handleCart = async (e) => {
-    if (Cookies.get("userId") == null || Cookies.get("userId") == "") {
-      alert("Login to add product to cart");
-    }
-    else {
-      setSubmit(true);
-      const Data = {
-        userId: Cookies.get("userId"),
-        productId: id,
-        quantity: quantity,
-      }
+  // const handleCart = async (e) => {
+  //   if (Cookies.get("userId") == null || Cookies.get("userId") == "") {
+  //     alert("Login to add product to cart");
+  //   }
+  //   else {
+  //     setSubmit(true);
+  //     const Data = {
+  //       userId: Cookies.get("userId"),
+  //       productId: id,
+  //       quantity: quantity,
+  //     }
 
-      try {
-        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addtoCart`, Data, {
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": process.env.REACT_APP_API_KEY,
-          },
-        });
+  //     try {
+  //       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/addtoCart`, Data, {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "api-key": process.env.REACT_APP_API_KEY,
+  //         },
+  //       });
 
-        const responseData = response.data;
-        if (responseData.message == "added") {
-          window.location.href = "/cart";
-        }
-        else if (responseData.message == "already") {
-          setSubmit(false);
-          alert("Product Already added to your cart");
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-        setSubmit(false);
-      }
-    }
-  };
+  //       const responseData = response.data;
+  //       if (responseData.message === "added") {
+  //         window.location.href = "/cart";
+  //       }
+  //       else if (responseData.message === "already") {
+  //         setSubmit(false);
+  //         alert("Product Already added to your cart");
+  //       }
+  //     } catch (error) {
+  //       console.error('Error:', error.message);
+  //       setSubmit(false);
+  //     }
+  //   }
+  // };
 
-  const handleBuy = async (image, price) => {
-    if (Cookies.get("userId") == null || Cookies.get("userId") == "") {
-      alert("Login to buy product");
-    }
-    else {
-      setBuysubmit(true);
-      const Data = {
-        userId: Cookies.get("userId"),
-        productId: id,
-        quantity: quantity,
-        image: image,
-        price: price,
-      }
+  // const handleBuy = async (image, price) => {
+  //   if (Cookies.get("userId") === null || Cookies.get("userId") === "") {
+  //     alert("Login to buy product");
+  //   }
+  //   else {
+  //     setBuysubmit(true);
+  //     const Data = {
+  //       userId: Cookies.get("userId"),
+  //       productId: id,
+  //       quantity: quantity,
+  //       image: image,
+  //       price: price,
+  //     }
 
-      try {
-        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/buyProduct`, Data, {
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": process.env.REACT_APP_API_KEY,
-          },
-        });
+  //     try {
+  //       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/buyProduct`, Data, {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "api-key": process.env.REACT_APP_API_KEY,
+  //         },
+  //       });
 
-        const responseData = response.data;
-        setBuysubmit(false);
-        if (responseData.message == "outofstock") {
-          alert("Product is out of stock");
-        }
-        else {
-          window.location.href = responseData.sessionUrl;
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-        setSubmit(false);
-      }
-    }
-  };
+  //       const responseData = response.data;
+  //       setBuysubmit(false);
+  //       if (responseData.message === "outofstock") {
+  //         alert("Product is out of stock");
+  //       }
+  //       else {
+  //         window.location.href = responseData.sessionUrl;
+  //       }
+  //     } catch (error) {
+  //       console.error('Error:', error.message);
+  //       setSubmit(false);
+  //     }
+  //   }
+  // };
 
-  const handleReview = async (event) => {
-    event.preventDefault();
-    if (Cookies.get("userId") == null || Cookies.get("userId") == "") {
-      alert("Login to give review");
-    }
-    else {
-      setReviewsubmit(true);
-      const review = document.getElementById("review").value;
-      const Data = {
-        userId: Cookies.get("userId"),
-        productId: id,
-        rating: rating,
-        review: review,
-      }
+  // const handleReview = async (event) => {
+  //   event.preventDefault();
+  //   if (Cookies.get("userId") === null || Cookies.get("userId") === "") {
+  //     alert("Login to give review");
+  //   }
+  //   else {
+  //     setReviewsubmit(true);
+  //     const review = document.getElementById("review").value;
+  //     const Data = {
+  //       userId: Cookies.get("userId"),
+  //       productId: id,
+  //       rating: rating,
+  //       review: review,
+  //     }
 
-      try {
-        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/review`, Data, {
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": process.env.REACT_APP_API_KEY,
-          },
-        });
+  //     try {
+  //       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/review`, Data, {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "api-key": process.env.REACT_APP_API_KEY,
+  //         },
+  //       });
 
-        const responseData = response.data;
-        setReviewsubmit(false);
-        if (responseData.message == "already") {
-          alert("You have already gave a review");
-        }
-        else {
-          setShowForm(false);
-          getReviews();
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-      }
-    }
-  };
+  //       const responseData = response.data;
+  //       setReviewsubmit(false);
+  //       if (responseData.message === "already") {
+  //         alert("You have already gave a review");
+  //       }
+  //       else {
+  //         setShowForm(false);
+  //         getReviews();
+  //       }
+  //     } catch (error) {
+  //       console.error('Error:', error.message);
+  //     }
+  //   }
+  // };
   
   const makePayment = async () => {
     try {
@@ -263,14 +263,14 @@ function ReviewData() {
   }
   
 
-  function generateGoldenStars(num) {
-    const goldenStar = '\u2B50';
-    let stars = "";
-    for (let i = 1; i <= parseInt(num); i++) {
-      stars = (goldenStar + ' ').repeat(i);
-    }
-    return stars;
-  }
+  // function generateGoldenStars(num) {
+  //   const goldenStar = '\u2B50';
+  //   let stars = "";
+  //   for (let i = 1; i <= parseInt(num); i++) {
+  //     stars = (goldenStar + ' ').repeat(i);
+  //   }
+  //   return stars;
+  // }
 
 
   return (
@@ -359,7 +359,7 @@ function ReviewData() {
                   </Col>
                 </Row>
                 {/* {data.map((item,index)=>( */}
-                <a>
+                <div>
                   <Button
                     variant="warning"
                     className="shadow-0"
@@ -368,13 +368,13 @@ function ReviewData() {
                       makePayment()
                     }}
                   >
-                    {buySubmit ? (
+                    {false ? (
                       <center><MDBSpinner style={{ color: "white" }}></MDBSpinner></center>
                     ) : (
                       <span>Buy Now</span>
                     )}
                   </Button>
-                </a>
+                </div>
                 {/* ))}  */}
               </div>
             </Col>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBSpinner,MDBCard,MDBCardBody } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom';
+import { MDBRow, MDBCol, MDBInput, MDBBtn,MDBCard,MDBCardBody } from 'mdb-react-ui-kit';
+// import { Link } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { toast, ToastContainer } from 'react-toastify';
@@ -62,7 +62,7 @@ export default function Signup() {
         <MDBCardBody className='p-5 w-100 d-flex flex-column'>
         <div style={{padding: '20px', width: "400px" }}>
           <center>
-          <h3 style={{ color: '#9e1030', fontWeight: '300', marginTop: '30px',textAlign:'center',fontWeight:"bold" }}>Register Here</h3>
+          <h3 style={{ color: '#9e1030', marginTop: '30px',textAlign:'center',fontWeight:"bold" }}>Register Here</h3>
           </center>
           <p style={{ color: '#405e77',marginTop:"10px" }}>Register Below</p>
           <form onSubmit={handleSubmit}>

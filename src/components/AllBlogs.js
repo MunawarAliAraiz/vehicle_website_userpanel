@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
-import blog1 from "../assets/blogs/blog1.jpg";
-import blog2 from "../assets/blogs/blog2.webp";
-import blog3 from "../assets/blogs/blog3.jpg";
-import blog4 from "../assets/blogs/blog4.jpg";
+import { Container } from "react-bootstrap";
+// import blog1 from "../assets/blogs/blog1.jpg";
+// import blog2 from "../assets/blogs/blog2.webp";
+// import blog3 from "../assets/blogs/blog3.jpg";
+// import blog4 from "../assets/blogs/blog4.jpg";
 import Blog from "../Cards/Blog";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
