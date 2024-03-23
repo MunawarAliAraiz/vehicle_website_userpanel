@@ -8,13 +8,12 @@ import ford from "../assets/car2.png";
 import kia from "../assets/car1.png";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { serverUrl } from '../utils/serverUrl';
 
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa"; // Import icons for next and previous buttons
 
 import { Container } from "react-bootstrap";
 import VehicleSlidingCard from "../Cards/VehicleSlidingCard";
-
-const serverUrl = "http://localhost:4000";
 
 const Cars = () => {
 

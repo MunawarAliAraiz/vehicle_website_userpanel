@@ -9,10 +9,8 @@ import Cookies from "js-cookie";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {loadStripe} from '@stripe/stripe-js';
-
-const serverUrl = 'http://localhost:4000';
-const stripe_public_key = "pk_test_51LHLWaG5WyR6N5cNFAQIggnSkqUUvcDW8Bqrj2EXz5nJY7wUMSMIjrGhfZU74GB1NyPGc7qMoLMFgjR3ImzYAxRe00vSwcOOg9";
-
+import { serverUrl } from '../utils/serverUrl';
+import { stripe_public_key } from '../utils/stripe_pk';
 
 function ReviewData() {
   const [showForm, setShowForm] = useState(false);
@@ -37,7 +35,7 @@ function ReviewData() {
 
   const fetchCar = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/cars/${id}`);
+      const response = await axios.get(`${serverUrl}/api/cars/${id}`);
       setCar(response.data.car);
     } catch (error) {
       console.error('Error fetching cars:', error);

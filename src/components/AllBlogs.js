@@ -7,6 +7,7 @@ import blog4 from "../assets/blogs/blog4.jpg";
 import Blog from "../Cards/Blog";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { serverUrl } from '../utils/serverUrl';
 
 const AllBlogs = () => {
 
@@ -22,7 +23,7 @@ const AllBlogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/blogs/list');
+        const response = await axios.get(`${serverUrl}/api/blogs/list`);
         setBlogs(response.data.blogs);
       } catch (error) {
         console.error('Error fetching blogs:', error);

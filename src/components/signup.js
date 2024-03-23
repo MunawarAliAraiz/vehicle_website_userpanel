@@ -7,8 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
 import axios from 'axios';
-
-const serverUrl = "http://localhost:4000";
+import { serverUrl } from '../utils/serverUrl';
 
 const colStyle = {
   height: '100%',

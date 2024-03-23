@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
+import { serverUrl } from '../utils/serverUrl';
 
 
 const SuccessPage = () => {
-  const serverUrl = 'http://localhost:4000';
   const { carId, carName, quantity, price } = useParams();
   const navigate = useNavigate() 
 
