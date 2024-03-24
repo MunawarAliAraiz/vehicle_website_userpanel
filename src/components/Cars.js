@@ -90,7 +90,7 @@ const Cars = () => {
 
   return (
     <Container className="card-made-con">
-      <h2 className="heading">Popular New Cars</h2>
+      <h2 className="heading">Popular New Vehicles</h2>
 
       <Slider {...settings}>
         {cars.map((car)=>(

@@ -4,9 +4,9 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../assets/logo.png";
-import { useRef, useState } from "react";
+import { useState } from "react";
 function Navbarr() {
   const [expanded, setExpanded] = useState(false);
   const handleToggle = () => {
@@ -53,12 +53,12 @@ function Navbarr() {
             </Nav.Link>{" "}
             {/* New Route */}
             <Nav.Link as={Link} to="/new-cars" onClick={handleNavLinkClick}>
-              New Cars
+              New Vehicles
             </Nav.Link>{" "}
             {/* Update Link to use Link */}
-            <Nav.Link as={Link} to="/bikes" onClick={handleNavLinkClick}>
+            {/* <Nav.Link as={Link} to="/bikes" onClick={handleNavLinkClick}>
               Bikes
-            </Nav.Link>{" "}
+            </Nav.Link>{" "} */}
             <Nav.Link as={Link} to="/signup" onClick={handleNavLinkClick}>
               Sign Up
             </Nav.Link>{" "}

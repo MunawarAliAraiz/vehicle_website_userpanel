@@ -2,14 +2,14 @@ import React from "react";
 import CarsDetails from "./components/CarsDetails";
 import Intro from "./components/UsedCardComp/Intro";
 import IntroHeadline from "./components/IntroHeadline";
-import Navbarr from "./components/Navbar";
+// import Navbarr from "./components/Navbar";
 import SellCars from "./components/SellCars";
 import CarsMade from "./components/CarsMade";
 import BrowseCars from "./components/BrowseCars";
-import VehicleAcessories from "./components/UsedCardComp/VehicleAcessories";
-import Footer from "./components/Footer";
+// import VehicleAcessories from "./components/UsedCardComp/VehicleAcessories";
+// import Footer from "./components/Footer";
 import AllBlogs from "./components/AllBlogs";
-import Bikes from "./components/Bikes";
+// import Bikes from "./components/Bikes";
 import Cars from "./components/Cars";
 
 import car1 from "./assets/car1.png";
@@ -30,7 +30,7 @@ const HomePage = () => {
       <Cars />
       <CarsDetails />
       <AllBlogs />
-      <Bikes />
+      {/* <Bikes /> */}
       <VehicleAutoparts />
     </>
   );

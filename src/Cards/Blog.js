@@ -1,8 +1,11 @@
 import React from "react";
 import { Row } from "react-bootstrap";
+import {Link} from 'react-router-dom';
+
 
 const Blog = (props) => {
   return (
+    <Link to={`/blog/${props.id}`} style={{textDecoration:"none"}}>
     <Row>
       <div
         className="blog-det"
@@ -33,6 +36,7 @@ const Blog = (props) => {
         </div>
       </div>
     </Row>
+    </Link>
   );
 };
 

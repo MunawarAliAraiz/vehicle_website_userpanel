@@ -43,6 +43,7 @@ const AllBlogs = () => {
           createdAtDate.getFullYear();
         return (
           <Blog
+          id={blog._id}
           key={blog._id}
           head={blog.title}
           det={`${blog.writer}  ${formattedDateWithOrdinal}`}
